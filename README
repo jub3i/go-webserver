@@ -3,4 +3,4 @@
 install reflex:
   $ go get -v github.com/cespare/reflex
 exec from webserver root dir
-  $ reflex -r '\.go$' -s -- sh -c 'go build -o webserver && ./webserver'
+  $ ./start_reflex.sh
