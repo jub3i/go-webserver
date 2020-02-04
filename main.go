@@ -1,7 +1,7 @@
 package main
 
 import (
-	routes "go-webserver/routes"
+	"github.com/jub3i/go-webserver/routes"
 	"log"
 	"net/http"
 )

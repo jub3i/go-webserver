@@ -1,8 +1,8 @@
 package routes
 
 import (
-	c "go-webserver/controllers"
-	mw "go-webserver/middleware"
+	c "github.com/jub3i/go-webserver/controllers"
+	mw "github.com/jub3i/go-webserver/middleware"
 	"net/http"
 )
 
