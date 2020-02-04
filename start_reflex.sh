@@ -1,1 +1,1 @@
-reflex -r '\.go$|\.mod$' -s -- sh -c 'go build -o go-webserver && du -h ./go-webserver && ./go-webserver'
+reflex -r '\.go$|\.mod$|\.env$' -s -- sh -c 'go build -o go-webserver && du -h ./go-webserver && ./go-webserver'
