@@ -1,9 +1,9 @@
 package main
 
 import (
+	routes "go-webserver/routes"
 	"log"
 	"net/http"
-	routes "webserver/routes"
 )
 
 func main() {

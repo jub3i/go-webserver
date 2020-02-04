@@ -1,9 +1,9 @@
 package routes
 
 import (
+	c "go-webserver/controllers"
+	mw "go-webserver/middleware"
 	"net/http"
-	c "webserver/controllers"
-	mw "webserver/middleware"
 )
 
 var Mux *http.ServeMux
