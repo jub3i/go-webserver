@@ -9,15 +9,14 @@ import (
 func Load() error {
 	godotenv.Load()
 
-	required := []string{
+	required := [1]string{
 		"GOWS_PORT",
 	}
 
-	for _, element := range required {
-		_, ok := os.LookupEnv(element)
-		if !ok {
-			errmsg := "required environment variable " +
-				"`" + element + "` " +
+	for _, envvar := range required {
+		_, exists := os.LookupEnv(envvar)
+		if !exists {
+			errmsg := "required environment variable `" + envvar + "` " +
 				"unset, shutting down..."
 			return errors.New(errmsg)
 		}
