@@ -1,4 +1,4 @@
-# DEV NOTES
+# Dev notes
 
 * install reflex:
 ```bash
@@ -16,7 +16,7 @@ $ vim .env
 $ ./start_reflex.sh
 ```
 
-# TODO
+# Todo
 
 * docs
 * testing
