@@ -1,2 +1,3 @@
 go-webserver
 .env
+sessions/*
