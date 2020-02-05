@@ -11,11 +11,12 @@ $ cp .env_example .env
 $ vim .env
 ```
 
-* exec from webserver root dir:
+* exec from go-webserver root dir:
 ```bash
 $ ./start_reflex.sh
 ```
 
 # TODO
-docs
-testing
+
+* docs
+* testing
