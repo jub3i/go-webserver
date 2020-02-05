@@ -1,14 +1,21 @@
-#DEV NOTES
-install reflex:
-  $ go get -v github.com/cespare/reflex
+# DEV NOTES
 
-setup env vars:
-  $ cp .env_example .env
-  $ vim .env
+* install reflex:
+```bash
+$ go get -v github.com/cespare/reflex
+```
 
-exec from webserver root dir:
-  $ ./start_reflex.sh
+* setup env vars:
+```bash
+$ cp .env_example .env
+$ vim .env
+```
 
-#TODO
+* exec from webserver root dir:
+```bash
+$ ./start_reflex.sh
+```
+
+# TODO
 docs
 testing
