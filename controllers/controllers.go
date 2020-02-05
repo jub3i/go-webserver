@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -10,5 +9,5 @@ type Handler struct {
 }
 
 func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "The Message Is: "+h.Msg)
+	w.Write([]byte("The Message Is: " + h.Msg))
 }

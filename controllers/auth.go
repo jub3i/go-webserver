@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/gorilla/sessions"
 	"log"
 	"net/http"
@@ -80,9 +79,7 @@ func Secret() http.Handler {
 			return
 		}
 
-		fmt.Println(session.Values)
-
-		fmt.Fprintln(w, "My little Secret")
+		w.Write([]byte("My little Secret"))
 	}
 	return http.HandlerFunc(fn)
 }
