@@ -10,7 +10,7 @@ func IsAdmin(next http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
 		isAdmin := false
 		if !isAdmin {
-			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
 			return
 		}
 		next.ServeHTTP(w, r)
