@@ -56,8 +56,7 @@ func Logout() http.Handler {
 				http.StatusText(http.StatusUnauthorized),
 				http.StatusUnauthorized)
 		}
-
-		session.Values["authenticated"] = false
+		session.Options.MaxAge = -1
 		session.Save(r, w)
 	}
 	return http.HandlerFunc(fn)
