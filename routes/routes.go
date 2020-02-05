@@ -14,4 +14,8 @@ func init() {
 	Mux.Handle("/bye", alice.New(mw.ReqLog).Then(c.Handler{Msg: "BYE"}))
 	Mux.Handle("/hi", alice.New(mw.ReqLog).Then(c.Handler{Msg: "HI"}))
 	Mux.Handle("/deny", alice.New(mw.ReqLog, mw.IsAdmin).Then(c.Handler{Msg: "DENY"}))
+
+	Mux.Handle("/api/auth/login", alice.New(mw.ReqLog).Then(c.Login()))
+	Mux.Handle("/api/auth/logout", alice.New(mw.ReqLog).Then(c.Logout()))
+	Mux.Handle("/secret", alice.New(mw.ReqLog).Then(c.Secret()))
 }
