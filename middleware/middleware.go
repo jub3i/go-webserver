@@ -4,7 +4,6 @@ import (
 	"context"
 	s "github.com/jub3i/go-webserver/services/session"
 	"log"
-	"math/rand"
 	"net/http"
 	"time"
 )
