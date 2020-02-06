@@ -9,8 +9,10 @@ import (
 func Load() error {
 	godotenv.Load()
 
-	required := [1]string{
+	// the rest of this function makes sure config is set
+	required := [2]string{
 		"GOWS_PORT",
+		"GOWS_SESSION_STORE_KEY",
 	}
 
 	for _, envvar := range required {
