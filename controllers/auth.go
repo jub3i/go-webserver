@@ -1,13 +1,14 @@
 package controllers
 
 import (
+	s "github.com/jub3i/go-webserver/services/session"
 	"log"
 	"net/http"
 )
 
 func Login() http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
-		session, err := store.Get(r, "sid")
+		session, err := s.Get(r)
 		if err != nil {
 			http.Error(
 				w,
@@ -16,8 +17,6 @@ func Login() http.Handler {
 		}
 
 		session.Values["authenticated"] = true
-		session.Values["foo"] = "YEH"
-		session.Values["bar"] = 123
 		session.Save(r, w)
 	}
 	return http.HandlerFunc(fn)
@@ -25,7 +24,7 @@ func Login() http.Handler {
 
 func Logout() http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
-		session, err := store.Get(r, "sid")
+		session, err := s.Get(r)
 		if err != nil {
 			http.Error(
 				w,
@@ -40,7 +39,7 @@ func Logout() http.Handler {
 
 func Secret() http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
-		session, err := store.Get(r, "sid")
+		session, err := s.Get(r)
 		if err != nil {
 			http.Error(
 				w,
@@ -57,6 +56,9 @@ func Secret() http.Handler {
 		}
 
 		log.Printf("%v\n", session.Values)
+		userid := r.Context().Value("userid")
+		log.Printf("%v", userid)
+
 		w.Write([]byte("My little Secret"))
 	}
 	return http.HandlerFunc(fn)
