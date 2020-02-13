@@ -16,14 +16,21 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	key := []byte(os.Getenv("GOWS_SESSION_STORE_KEY"))
 	path := filepath.Join(filepath.Dir(ex), "sessions")
+
+	secure := false
+	if os.Getenv("GOWS_ENV") == "prod" {
+		secure = true
+	}
+
+	key := []byte(os.Getenv("GOWS_SESSION_STORE_KEY"))
 	store = sessions.NewFilesystemStore(path, key)
+
 	store.Options = &sessions.Options{
 		Path:     "/",
 		MaxAge:   60 * 60 * 24 * 14,
 		HttpOnly: true,
-		Secure:   true,
+		Secure:   secure,
 	}
 }
 

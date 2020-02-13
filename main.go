@@ -9,11 +9,11 @@ import (
 )
 
 func main() {
-	// load config
-	err := config.Load()
+	c, err := config.Get()
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Printf("go-webserver mode: %s", c["GOWS_ENV"])
 
 	// start the http server
 	addr := "localhost:" + os.Getenv("GOWS_PORT")
