@@ -16,6 +16,12 @@ $ vim .env
 $ ./start_reflex.sh
 ```
 
+* start the server and run e2e tests
+```bash
+$ ./start_reflex.sh
+$ go test -v
+```
+
 # Todo
 
 * docs
