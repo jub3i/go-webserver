@@ -2,29 +2,25 @@ package session
 
 import (
 	"github.com/gorilla/sessions"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 )
 
 var store *sessions.FilesystemStore
-var sessionName = "sid"
+var sessionName string
 
-func init() {
+func Init(sn string, key string, secure bool) error {
+	sessionName = sn
+
 	ex, err := os.Executable()
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 	path := filepath.Join(filepath.Dir(ex), "sessions")
 
-	secure := false
-	if os.Getenv("GOWS_ENV") == "prod" {
-		secure = true
-	}
-
-	key := []byte(os.Getenv("GOWS_SESSION_STORE_KEY"))
-	store = sessions.NewFilesystemStore(path, key)
+	byteKey := []byte(key)
+	store = sessions.NewFilesystemStore(path, byteKey)
 
 	store.Options = &sessions.Options{
 		Path:     "/",
@@ -32,6 +28,8 @@ func init() {
 		HttpOnly: true,
 		Secure:   secure,
 	}
+
+	return nil
 }
 
 func Get(r *http.Request) (*sessions.Session, error) {

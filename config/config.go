@@ -3,24 +3,13 @@ package config
 import (
 	"errors"
 	"github.com/joho/godotenv"
-	"log"
 	"os"
 )
 
-func init() {
-	err := Load()
-	if err != nil {
-		log.Fatal(err)
-	}
-}
+var required []string
 
-var required = [3]string{
-	"GOWS_PORT",
-	"GOWS_SESSION_STORE_KEY",
-	"GOWS_ENV",
-}
-
-func Load() error {
+func Init(r []string) (map[string]string, error) {
+	required = r
 	godotenv.Load()
 
 	// the rest of this function makes sure required config is set
@@ -29,24 +18,19 @@ func Load() error {
 		if !exists {
 			errmsg := "required environment variable `" + envName + "` " +
 				"unset, shutting down..."
-			return errors.New(errmsg)
+			return nil, errors.New(errmsg)
 		}
 	}
 
-	return nil
+	return Get(), nil
 }
 
-func Get() (map[string]string, error) {
+func Get() map[string]string {
 	env := make(map[string]string)
 	for _, envName := range required {
-		envVal, exists := os.LookupEnv(envName)
-		if !exists {
-			errmsg := "required environment variable `" + envName + "` " +
-				"unset, shutting down..."
-			return nil, errors.New(errmsg)
-		}
+		envVal, _ := os.LookupEnv(envName)
 		env[envName] = envVal
 	}
 
-	return env, nil
+	return env
 }
